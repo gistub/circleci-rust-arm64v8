@@ -1,0 +1,27 @@
+version: 2.1
+
+jobs:
+  linux:
+    docker:
+      - image: hamiid/circleci-rust:latest
+    environment:
+      RUST_BACKTRACE: "1"
+      CIRCLE_OS_NAME: linux
+    steps:
+      - run:
+          name: Build
+          command: |
+            cargo generate-lockfile
+            cargo build
+      - setup_remote_docker
+      - run: sudo docker pull arm64v8/debian:stretch-slim
+      - run:
+          name: shit
+          command: |
+            sudo docker build . -t 'arm64v8rust:testing'
+            sudo docker run --rm 'arm64v8rust:testing'
+workflows:
+  version: 2.1
+  linux-test:
+    jobs:
+      - linux
