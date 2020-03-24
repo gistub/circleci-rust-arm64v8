@@ -19,6 +19,8 @@ jobs:
       - run:
           name: shit
           command: |
+            cp /usr/bin/qemu-arm-static .
+            cp /usr/bin/qemu-aarch64-static .
             sudo docker build . -t 'arm64v8rust:testing'
             sudo docker run --rm 'arm64v8rust:testing'
 workflows:
