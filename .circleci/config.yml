@@ -15,15 +15,15 @@ jobs:
             cargo generate-lockfile
             cargo build --target aarch64-unknown-linux-gnu
       - setup_remote_docker
-      - run: sudo docker pull arm64v8/debian:stretch-slim
+      - run: sleep 10 && docker pull arm64v8/debian:stretch-slim
       - run:
           name: shit
           command: |
             cp /usr/bin/qemu-arm-static .
             cp /usr/bin/qemu-aarch64-static .
             cp target/aarch64-unknown-linux-gnu/debug/hello .
-            sudo docker build . -t 'arm64v8rust:testing'
-            sudo docker run --rm 'arm64v8rust:testing'
+            docker build . -t 'arm64v8rust:testing'
+            docker run --rm 'arm64v8rust:testing'
 workflows:
   version: 2.1
   linux-test:
