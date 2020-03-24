@@ -7,11 +7,7 @@ jobs:
     - RUST_BACKTRACE: '1'
     - CIRCLE_OS_NAME: linux
     steps:
-    - run:
-        name: Add Rust Components
-        command: |
-          rustup component add clippy rustfmt
-          rustc --version; cargo --version; rustup --version
+    - checkout
     - run:
         name: Build
         command: |
@@ -42,11 +38,7 @@ workflows:
 #       RUST_BACKTRACE: \"1\"
 #       CIRCLE_OS_NAME: linux
 #     steps:
-#       - run:
-#           name: Add Rust Components
-#           command: |
-#             rustup component add clippy rustfmt
-#             rustc --version; cargo --version; rustup --version
+#       - checkout
 #       - run:
 #           name: Build
 #           command: |

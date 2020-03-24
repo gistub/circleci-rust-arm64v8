@@ -8,6 +8,7 @@ jobs:
       RUST_BACKTRACE: "1"
       CIRCLE_OS_NAME: linux
     steps:
+      - checkout
       - run:
           name: Build
           command: |
