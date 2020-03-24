@@ -8,6 +8,12 @@ jobs:
       RUST_BACKTRACE: "1"
       CIRCLE_OS_NAME: linux
     steps:
+      - run:
+          name: install debian shit
+          command: |
+            sudo apt-get update
+            sudo apt-get install binutils-aarch64-linux-gnu
+            sudo apt-get install qemu-utils qemu-system-arm qemu-system-common qemu-utils qemu-user-static
       - checkout
       - run:
           name: Build
